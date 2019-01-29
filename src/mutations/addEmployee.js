@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export default gql`
   mutation createEmployee($name: String!) {
-    createEmployee(name: $name) {
+    createEmployee(input: { name: $name}) {
       employee {
         id
         name

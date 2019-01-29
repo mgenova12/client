@@ -18,7 +18,7 @@ export class AddEmployee extends Component {
 
   handleSubmit = addEmployee => {
     const name  = this.state.name;
-    addEmployee({ variables: { name } });
+    addEmployee({ variables: { name: name } });
     this.setState({ name: '' });
 
     // refetchQueries: [{ query }]
@@ -29,13 +29,20 @@ export class AddEmployee extends Component {
     if (this.state.submitted) {
         addRoles = <AddRoles employeeId={this.state.id} />
     }  	
-    console.log(this.state.name)
+    // console.log(this.state.name)
     // const { name } = this.state;
     return (
       <Mutation mutation={addEmployee}>
-
+        {(addEmployee, { data }) => (
           <div>
-          	<form onSubmit={() => this.handleSubmit(addEmployee)} autoComplete="off">
+          	<form 
+            autoComplete="off"
+            onSubmit={e => {
+              e.preventDefault();
+              e.target.reset();
+              this.handleSubmit(addEmployee)
+            }}
+            >
     	        <TextField
     	          id="outlined-name"
     	          label="Name"
@@ -46,7 +53,7 @@ export class AddEmployee extends Component {
             </form>
              {addRoles}        
           </div>
-
+        )}
       </Mutation>
     );
   }
