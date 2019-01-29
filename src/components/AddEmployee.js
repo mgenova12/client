@@ -19,7 +19,7 @@ export class AddEmployee extends Component {
   handleSubmit = addEmployee => {
     const name  = this.state.name;
     addEmployee({ variables: { name: name } });
-    this.setState({ name: '' });
+    this.setState({ name: '', submitted: true });
 
     // refetchQueries: [{ query }]
   }

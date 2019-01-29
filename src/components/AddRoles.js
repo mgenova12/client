@@ -11,14 +11,21 @@ import axios from 'axios';
 
 export class AddRoles extends Component {
 	state = {
-		roles: []
+		roleIds: []
 	}
 
-  handleChange = id => event => { 
-    var roleIndex = this.state.roles.findIndex(role => role.id === id)
-    let roles = [...this.state.roles]
-    roles[roleIndex].checked = true;
-    this.setState(roles)
+  handleChange = roleID => event => {
+    if (event.target.checked) {
+      this.setState({ roleIds: [...this.state.roleIds, roleID] })
+    } else {
+      var index = this.state.roleIds.indexOf(roleID)
+      this.state.roleIds.splice(index, 1);
+    }
+    
+    // var roleIndex = this.state.roles.findIndex(role => role.id === id)
+    // let roles = [...this.state.roles]
+    // roles[roleIndex].checked = true;
+    // this.setState(roles)
   };  
 
   handleSubmit = id => event => {
@@ -53,6 +60,7 @@ export class AddRoles extends Component {
   }
 
   render() {
+    console.log(this.state.roleIds)
     return (
       <Query
         query={getRolesQuery}
@@ -67,8 +75,8 @@ export class AddRoles extends Component {
               <Grid container justify = "center">
                 <FormGroup row>
 
-                {data.roles.map(({ id, title }) => (
-                  <FormControlLabel key={id} control={ <Switch onChange={this.handleChange(id)} /> } label={title} />
+                {data.roles.map( role => (
+                  <FormControlLabel key={role.id} control={ <Switch onChange={this.handleChange(role.id)} /> } label={role.title} />
                 ))}
 
                 </FormGroup>
