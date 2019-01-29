@@ -20,8 +20,6 @@ export class AddEmployee extends Component {
     const name  = this.state.name;
     addEmployee({ variables: { name: name } });
     this.setState({ name: '', submitted: true });
-
-    // refetchQueries: [{ query }]
   }
 
   render() {
@@ -29,10 +27,12 @@ export class AddEmployee extends Component {
     if (this.state.submitted) {
         addRoles = <AddRoles employeeId={this.state.id} />
     }  	
-    // console.log(this.state.name)
-    // const { name } = this.state;
+
     return (
-      <Mutation mutation={addEmployee}>
+      <Mutation 
+      mutation={addEmployee}
+      onCompleted={data => this.setState({ id: data.createEmployee.employee.id})}
+      >
         {(addEmployee, { data }) => (
           <div>
           	<form 
