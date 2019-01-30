@@ -26,11 +26,9 @@ export class AddRoles extends Component {
 
   handleSubmit = (employeeId, addEmployeeRole) => event => {
     event.preventDefault()
-
     this.state.roleIds.forEach(roleId => (
       addEmployeeRole({ variables: { employeeId: parseInt(employeeId), roleId: parseInt(roleId) } })
     ))
-
   };
 
 
