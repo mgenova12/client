@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
+
 import addEmployee from '../mutations/addEmployee';
-import selectRole from '../mutations/selectRole';
 import getEmployeeRolesQuery from '../queries/getEmployeeRoles';
 
 import TextField from '@material-ui/core/TextField';
-import AddRoles from './AddRoles'
+import GetRoles from './GetRoles'
 
 export class AddEmployee extends Component {
   state = {
     name: '',
-    id: null,
-    submitted: false
   }
 
   handleChange = event => {
@@ -21,41 +19,28 @@ export class AddEmployee extends Component {
   handleSubmit = (addEmployee, selectRole) => {
     const name  = this.state.name;
     addEmployee({ variables: { name: name } });
-    
-    selectRole({ variables: { checked: false } })
-
-    this.setState({ name: '', submitted: true });
+    this.setState({ name: '' });
   }
 
-  render() {
-    // let addRoles 
-    // if (this.state.submitted) {
-    //     addRoles = <AddRoles employeeId={this.state.id} />
-    // }  	
+  render() {  	
 
     return (
       <Mutation 
       mutation={addEmployee}
-      onCompleted={data => this.setState({id: data.createEmployee.employee.id})}
       refetchQueries={() => {
          return [{
             query: getEmployeeRolesQuery
         }];
       }}        
       >
-        {(addEmployee, { data }) => (
-
-        <Mutation 
-        mutation={selectRole}      
-        >
-        {(selectRole, { data }) => (
+        {(addEmployee, { data }) => ( 
           <div>
           	<form 
             autoComplete="off"
             onSubmit={e => {
               e.preventDefault();
               e.target.reset();
-              this.handleSubmit(addEmployee, selectRole)
+              this.handleSubmit(addEmployee)
             }}
             >
     	        <TextField
@@ -66,11 +51,8 @@ export class AddEmployee extends Component {
     	          onChange={this.handleChange}
     	        />
             </form>
-             <AddRoles employeeId={this.state.id} />        
-          </div>
-          )}
-        </Mutation>          
-
+             <GetRoles employeeId={data} />        
+          </div>         
 
         )}
       </Mutation>
