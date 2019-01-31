@@ -4,6 +4,11 @@ import { Mutation } from 'react-apollo';
 import getRolesQuery from '../queries/getRoles';
 import addEmployeeRole from '../mutations/addEmployeeRole'
 
+// import selectRole from '../mutations/selectRole'
+
+import getEmployeeRolesQuery from '../queries/getEmployeeRoles';
+import EmployeeTable from './EmployeeTable'
+
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
@@ -12,16 +17,21 @@ import Grid from '@material-ui/core/Grid';
 
 export class AddRoles extends Component {
 	state = {
-		roleIds: []
+		roleIds: [],
+    checked: true
 	}
 
-  handleChange = roleId => event => {
-    if (event.target.checked) {
-      this.setState({ roleIds: [...this.state.roleIds, roleId] })
+  handleChange = (role, addEmployeeRole, employeeId) => event => {
+
+    if(event.target.checked) {
+      addEmployeeRole({ variables: { employeeId: parseInt(employeeId), roleId: parseInt(role.id) } })
+      this.setState({ roleIds: [...this.state.roleIds, role.id]})
     } else {
-      var index = this.state.roleIds.indexOf(roleId)
+      var index = this.state.roleIds.indexOf(role.id)
       this.state.roleIds.splice(index, 1);
     }
+    console.log(role.checked)
+
   };  
 
   handleSubmit = (employeeId, addEmployeeRole) => event => {
@@ -29,8 +39,9 @@ export class AddRoles extends Component {
     this.state.roleIds.forEach(roleId => (
       addEmployeeRole({ variables: { employeeId: parseInt(employeeId), roleId: parseInt(roleId) } })
     ))
-  };
+    
 
+  };
 
   render() {
     return (
@@ -45,12 +56,31 @@ export class AddRoles extends Component {
           return(
             <div>
                 <Grid container justify = "center">
-                  <FormGroup row>
+                  <FormGroup row >
 
                   {data.roles.map( role => (
-                    <FormControlLabel key={role.id} control={ <Switch onChange={this.handleChange(role.id)} /> } label={role.title} />
-                  ))}
 
+                  <Mutation 
+                  mutation={addEmployeeRole}
+                  refetchQueries={() => {
+                     return [{
+                        query: getEmployeeRolesQuery
+                    }];
+                  }}
+                  >    
+
+                  {(addEmployeeRole, { data }) => (                                    
+                    <FormControlLabel 
+                    key={role.id} 
+                    control={ 
+                      <Switch onChange={this.handleChange(role, addEmployeeRole, this.props.employeeId)} /> 
+                    } 
+                    label={role.title} />
+                  )}
+                  </Mutation>
+
+
+                  ))}
                   </FormGroup>
                 </Grid>
             </div>
@@ -58,15 +88,25 @@ export class AddRoles extends Component {
         }}
         </Query>
 
-        <Mutation mutation={addEmployeeRole}>
+        <Mutation 
+        mutation={addEmployeeRole}
+        refetchQueries={() => {
+           return [{
+              query: getEmployeeRolesQuery
+          }];
+        }}        
+        >
           {(addEmployeeRole, { data }) => ( 
             <form 
-            onSubmit={ this.handleSubmit(this.props.employeeId, addEmployeeRole ) }
+            onSubmit={ this.handleSubmit(this.props.employeeId, addEmployeeRole) }
             >
               <Button type='submit' variant="contained" color="primary"> Add Employee </Button>
             </form>
           )}
         </Mutation>
+
+        <EmployeeTable/>
+        
       </div>
     );
   }
