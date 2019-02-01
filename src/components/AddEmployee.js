@@ -16,7 +16,7 @@ export class AddEmployee extends Component {
     this.setState({ name: event.target.value });
   }
 
-  handleSubmit = (addEmployee, selectRole) => {
+  handleSubmit = (addEmployee) => {
     const name  = this.state.name;
     addEmployee({ variables: { name: name } });
     this.setState({ name: '' });
@@ -34,6 +34,8 @@ export class AddEmployee extends Component {
       }}        
       >
         {(addEmployee, { data }) => ( 
+
+
           <div>
           	<form 
             autoComplete="off"
