@@ -11,16 +11,18 @@ import Button from '@material-ui/core/Button';
 import Grow from '@material-ui/core/Grow';
 
 export class GetRoles extends Component {
-    
+
 
   handleSave = resetRoles => {
     resetRoles({ variables: {  } });
+
+    this.props.onSave(false)
   }
 
   render() {
 
     return (
-      <div>
+      <div className={this.props.submitted ? 'show' : 'hidden'}>
         <Query
           query={getRolesQuery}
         >
@@ -29,8 +31,8 @@ export class GetRoles extends Component {
           if (error) return <p>ERROR</p>;
           
           return(
-                <Grid container justify = "center">
-                  <Grow in={true}>
+                <Grid container justify = "center" >
+                  <Grow in={this.props.submitted}>
                   <FormGroup row>
                   {data.roles.map( role => (
                   	<SelectRoles key={role.id} role={role} employeeId={this.props.employeeId} /> 
@@ -41,7 +43,6 @@ export class GetRoles extends Component {
           )
         }}
         </Query>
-
         <Mutation 
         mutation={resetRoles}
         refetchQueries={() => {
@@ -51,7 +52,9 @@ export class GetRoles extends Component {
         }}         
         >  
           {(resetRoles, { data }) => (
+          <Grow in={this.props.submitted}>
             <Button variant="contained" color="primary" onClick={ () => { this.handleSave(resetRoles) } }>Save Employee</Button>
+          </Grow>
          
           )}
           </Mutation>  

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EmployeeTable from './EmployeeTable'
+
 import AddEmployee from './AddEmployee'
 
 export class EmployeeSetup extends Component {
@@ -10,7 +10,7 @@ export class EmployeeSetup extends Component {
     return (
       <div>
       	<AddEmployee/>
-      	<EmployeeTable/>
+      	
       </div>
     );
   }

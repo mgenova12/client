@@ -26,8 +26,9 @@ export class EmployeeTable extends Component {
 		       <Table>
 		        <TableHead>
 		          <TableRow>
-		            <TableCell>Name</TableCell>
-		            <TableCell>Roles</TableCell>
+		            <TableCell><p>Name</p></TableCell>
+                <TableCell><p>Roles</p></TableCell>
+                <TableCell><p>Delete</p></TableCell>
 		          </TableRow>
 		        </TableHead>
 		        	<EmployeeRow employees={data.employees}/>
