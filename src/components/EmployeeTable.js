@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import getEmployeeRolesQuery from '../queries/getEmployeeRoles';
 import EmployeeRow from './EmployeeRow'
+import EditEmployee from './EditEmployee'
 
 import Table from '@material-ui/core/Table';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,11 +10,28 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
 export class EmployeeTable extends Component {
+  state = {
+    showEdit: false,
+    name: '',
+    roles: ''
+  }
 
+  handleEdit = (name, roles) => {
+   this.props.handleEdit()
+   this.setState({showEdit: true, name: name, roles: roles})
+  }  
+
+  handleDelete = () => {
+   this.props.handleDelete()
+  }
 
   render() {
     return (
       <div>
+        <div className={this.state.showEdit ? 'show' : 'hidden'}> 
+          <EditEmployee name={this.state.name} roles={this.state.roles}/>
+        </div>
+
         <Query
           query={getEmployeeRolesQuery}
         >
@@ -31,7 +49,7 @@ export class EmployeeTable extends Component {
                 <TableCell><p>Delete</p></TableCell>
 		          </TableRow>
 		        </TableHead>
-		        	<EmployeeRow employees={data.employees}/>
+		        	<EmployeeRow handleEdit={this.handleEdit} handleDelete={this.handleDelete} employees={data.employees}/>
 		      </Table>
             </div>
           )

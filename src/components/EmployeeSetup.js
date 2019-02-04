@@ -10,7 +10,6 @@ export class EmployeeSetup extends Component {
     return (
       <div>
       	<AddEmployee/>
-      	
       </div>
     );
   }

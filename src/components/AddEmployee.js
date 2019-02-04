@@ -11,7 +11,8 @@ import GetRoles from './GetRoles'
 export class AddEmployee extends Component {
   state = {
     name: '',
-    submitted: false
+    showAddEmployee: true,
+    showRoles: false
   }
 
   handleChange = event => {
@@ -21,11 +22,19 @@ export class AddEmployee extends Component {
   handleSubmit = (addEmployee) => {
     const name  = this.state.name;
     addEmployee({ variables: { name: name } });
-    this.setState({ name: '', submitted: true });
+    this.setState({ name: '', showRoles: true });
   }
 
-  handleSave = (val) => {
-    this.setState({submitted: val})
+  handleSave = () => {
+    this.setState({showRoles: false})
+  } 
+  
+  handleEdit = () => {
+   this.setState({showAddEmployee: false, showRoles: false})
+  }  
+
+  handleDelete = () => {
+    console.log('DELETE')
   }
 
   render() {  	
@@ -41,9 +50,7 @@ export class AddEmployee extends Component {
       }}        
       >
         {(addEmployee, { data }) => ( 
-
-
-          <div>
+          <div className={this.state.showAddEmployee ? 'show' : 'hidden'} >
           	<form 
             autoComplete="off"
             onSubmit={e => {
@@ -58,14 +65,15 @@ export class AddEmployee extends Component {
     	          margin="normal"
     	          variant="outlined"
     	          onChange={this.handleChange}
+                value={this.state.name}
     	        />
             </form>
-             <GetRoles onSave={this.handleSave} employeeId={data} submitted={this.state.submitted} />        
+             <GetRoles onSave={this.handleSave} employeeId={data} showRoles={this.state.showRoles} />        
           </div>         
 
         )}
       </Mutation>
-      <EmployeeTable/>
+      <EmployeeTable handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
       </div>
     );
   }

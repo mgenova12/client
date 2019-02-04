@@ -6,18 +6,33 @@ import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
 
 export class EmployeeRow extends Component {
+  state = {
+    hover: true
+  }
 
- handleEdit = () => {
-  console.log('EDIT')
- }
+  handleEdit = (name, roles) => {
+   this.props.handleEdit(name, roles)
+  }  
+
+  handleDelete = () => {
+   this.props.handleDelete()
+  }
+
+  handleMouseEnter = () => {
+    this.setState({hover: false})
+  }  
+
+  handleMouseLeave = () => {
+    this.setState({hover: true})
+  }
+
 
   render() {
     return (    	
     	<TableBody>
            {this.props.employees.map( employee => (
 
-
-          	<TableRow className={'tableRow'} onClick={this.handleEdit} key={employee.id}>
+          	<TableRow className={this.state.hover ? 'tableRow' : 'off'} onClick={() => this.handleEdit(employee.name, employee.roles)} key={employee.id}>
               	<TableCell><p>{employee.name}</p></TableCell>
               	<TableCell >
               	{employee.roles.map(role => (
@@ -25,7 +40,12 @@ export class EmployeeRow extends Component {
               	))}
               	</TableCell>
 
-                <DeleteEmployee/>
+                <DeleteEmployee 
+                handleMouseEnter={this.handleMouseEnter} 
+                handleMouseLeave={this.handleMouseLeave} 
+                employeeId={employee.id}
+                handleDelete={this.handleDelete}
+                />
 
             </TableRow>
 

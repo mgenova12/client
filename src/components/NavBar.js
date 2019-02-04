@@ -18,7 +18,7 @@ export class NavBar extends Component {
 	            <MenuIcon />
 	          </IconButton>
 	          <Typography variant="h6" color="inherit" className="grow">
-	          	Rusticana Shift Scheduler
+	          	Shift Scheduler
 	          </Typography>
 	          <Button color="inherit">Login</Button>
 	        </Toolbar>
