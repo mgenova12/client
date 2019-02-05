@@ -14,7 +14,8 @@ export class AddEmployee extends Component {
     name: '',
     roles: [] ,
     showAddEmployee: true,
-    showRoles: false
+    showRoles: false,
+    employee:[]
   }
 
   handleChange = event => {
@@ -32,7 +33,7 @@ export class AddEmployee extends Component {
   } 
   
   handleEdit = (employee) => {
-    this.setState({showAddEmployee: false, showRoles: true, name: employee.name, roles: employee.roles})
+    this.setState({employee: employee, showAddEmployee: false, showRoles: true, name: employee.name, roles: employee.roles})
   }  
 
   handleDelete = () => {
@@ -83,7 +84,7 @@ export class AddEmployee extends Component {
         
         ) : (
         <div>
-          <EditEmployee name={this.state.name} roles={this.state.roles}/>
+          <EditEmployee employee={this.state.employee}/>
         </div>
         )}
 
