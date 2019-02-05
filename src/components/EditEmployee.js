@@ -3,18 +3,17 @@ import TextField from '@material-ui/core/TextField';
 
 
 export class EditEmployee extends Component {
-  state = {
-  	newName: this.props.name
-  }
  
-  handleChange = event => {
-    this.setState({ newName: event.target.value });
-  }
+ state = {
+ 	name: this.props.name
+ }
 
+  handleChange = event => {
+    this.setState({ name: event.target.value });
+  }
 
   render() {
-  	console.log(this.props.name)
-  	// console.log(this.props.roles)
+
     return (
       <div>
       	<form 
@@ -30,7 +29,7 @@ export class EditEmployee extends Component {
 	          margin="normal"
 	          variant="outlined"
 	          onChange={this.handleChange}
-              value={this.props.name}
+              value={this.state.name}
 	        />
         </form>
       </div>

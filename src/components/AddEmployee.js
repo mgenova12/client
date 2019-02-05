@@ -4,6 +4,7 @@ import { Mutation } from 'react-apollo';
 import EmployeeTable from './EmployeeTable'
 import addEmployee from '../mutations/addEmployee';
 import getEmployeeRolesQuery from '../queries/getEmployeeRoles';
+import EditEmployee from './EditEmployee'
 
 import TextField from '@material-ui/core/TextField';
 import GetRoles from './GetRoles'
@@ -11,6 +12,7 @@ import GetRoles from './GetRoles'
 export class AddEmployee extends Component {
   state = {
     name: '',
+    roles: [] ,
     showAddEmployee: true,
     showRoles: false
   }
@@ -29,8 +31,8 @@ export class AddEmployee extends Component {
     this.setState({showRoles: false})
   } 
   
-  handleEdit = () => {
-   this.setState({showAddEmployee: false, showRoles: false})
+  handleEdit = (employee) => {
+    this.setState({showAddEmployee: false, showRoles: true, name: employee.name, roles: employee.roles})
   }  
 
   handleDelete = () => {
@@ -39,40 +41,52 @@ export class AddEmployee extends Component {
 
   render() {  	
 
+
     return (
       <div>
-      <Mutation 
-      mutation={addEmployee}
-      refetchQueries={() => {
-         return [{
-            query: getEmployeeRolesQuery
-        }];
-      }}        
-      >
-        {(addEmployee, { data }) => ( 
-          <div className={this.state.showAddEmployee ? 'show' : 'hidden'} >
-          	<form 
-            autoComplete="off"
-            onSubmit={e => {
-              e.preventDefault();
-              e.target.reset();
-              this.handleSubmit(addEmployee)
-            }}
+      {this.state.showAddEmployee ? (
+        <div>
+          <Mutation 
+            mutation={addEmployee}
+            refetchQueries={() => {
+               return [{
+                  query: getEmployeeRolesQuery
+              }];
+            }}        
             >
-    	        <TextField
-    	          id="outlined-name"
-    	          label="Name"
-    	          margin="normal"
-    	          variant="outlined"
-    	          onChange={this.handleChange}
-                value={this.state.name}
-    	        />
-            </form>
-             <GetRoles onSave={this.handleSave} employeeId={data} showRoles={this.state.showRoles} />        
-          </div>         
-
+              {(addEmployee, { data }) => ( 
+                <div>
+                	<form 
+                  autoComplete="off"
+                  onSubmit={e => {
+                    e.preventDefault();
+                    e.target.reset();
+                    this.handleSubmit(addEmployee)
+                  }}
+                  >
+          	        <TextField
+          	          id="outlined-name"
+          	          label="Name"
+          	          margin="normal"
+          	          variant="outlined"
+          	          onChange={this.handleChange}
+                      value={this.state.name}
+          	        />
+                  </form>
+                  {this.state.showRoles &&
+                   <GetRoles onSave={this.handleSave} employeeId={data} showRoles={this.state.showRoles}/>
+                  }
+                </div>         
+              )}
+            </Mutation>
+          </div>
+        
+        ) : (
+        <div>
+          <EditEmployee name={this.state.name} roles={this.state.roles}/>
+        </div>
         )}
-      </Mutation>
+
       <EmployeeTable handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
       </div>
     );

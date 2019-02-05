@@ -10,8 +10,8 @@ export class EmployeeRow extends Component {
     hover: true
   }
 
-  handleEdit = (name, roles) => {
-   this.props.handleEdit(name, roles)
+  handleEdit = (employee) => {
+   this.props.handleEdit(employee)
   }  
 
   handleDelete = () => {
@@ -32,7 +32,11 @@ export class EmployeeRow extends Component {
     	<TableBody>
            {this.props.employees.map( employee => (
 
-          	<TableRow className={this.state.hover ? 'tableRow' : 'off'} onClick={() => this.handleEdit(employee.name, employee.roles)} key={employee.id}>
+          	<TableRow
+            className={this.state.hover ? 'tableRow' : 'off'} 
+            onClick={() => this.handleEdit(employee)} 
+            key={employee.id}
+            >
               	<TableCell><p>{employee.name}</p></TableCell>
               	<TableCell >
               	{employee.roles.map(role => (

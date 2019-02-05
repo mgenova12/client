@@ -20,7 +20,7 @@ export class GetRoles extends Component {
   render() {
 
     return (
-      <div className={this.props.showRoles ? 'show' : 'hidden'}>
+      <div>
         <Query
           query={getRolesQuery}
         >

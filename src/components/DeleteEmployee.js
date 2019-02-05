@@ -7,7 +7,8 @@ import deleteEmployee from '../mutations/deleteEmployee'
 
 export class DeleteEmployee extends Component {
   
-  handleDelete = (deleteEmployee) => {
+  handleDelete = (deleteEmployee, event) => {
+    event.stopPropagation()
     deleteEmployee({ variables: { id: this.props.employeeId } });
     this.props.handleDelete()
   }
@@ -36,7 +37,7 @@ export class DeleteEmployee extends Component {
              onMouseEnter={this.handleMouseEnter} 
              onMouseLeave={this.handleMouseLeave} 
              variant="contained" color="secondary" 
-             onClick={ () => {this.handleDelete(deleteEmployee)} }> X 
+             onClick={ (e) => {this.handleDelete(deleteEmployee, e)} }> X 
              </Button>
           )}
           </Mutation>  
