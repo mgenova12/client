@@ -5,9 +5,10 @@ import Switch from '@material-ui/core/Switch';
 
 export class SelectEditRoles extends Component {
   
- 
+
 
   render() {
+  	console.log(this.props.checked)
     return (
       <div>
         <FormControlLabel 

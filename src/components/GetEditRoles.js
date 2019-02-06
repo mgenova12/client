@@ -8,6 +8,9 @@ import FormGroup from '@material-ui/core/FormGroup';
 
 export class GetEditRoles extends Component {
   
+  handleSelectEditRoles = () => {
+  	
+  }
  
   render() {
     return (
@@ -23,7 +26,7 @@ export class GetEditRoles extends Component {
                 <Grid container justify = "center" >
                   <FormGroup row>
                   {data.roles.map( role => (
-                  	<SelectEditRoles key={role.id} role={role} /> 
+                  	<SelectEditRoles key={role.id} role={role} checked={this.handleSelectEditRoles}/> 
                   ))}
                   </FormGroup>
                 </Grid>
