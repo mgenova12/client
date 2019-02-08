@@ -8,10 +8,10 @@ export class SelectEditRoles extends Component {
 
 
   render() {
-  	console.log(this.props.checked)
     return (
       <div>
-        <FormControlLabel 
+        <FormControlLabel 	
+        checked={this.props.checked}
         key={this.props.role.id} 
         control={ 
           <Switch /> 

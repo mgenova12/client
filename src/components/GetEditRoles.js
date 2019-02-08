@@ -7,10 +7,6 @@ import Grid from '@material-ui/core/Grid';
 import FormGroup from '@material-ui/core/FormGroup';
 
 export class GetEditRoles extends Component {
-  
-  handleSelectEditRoles = () => {
-  	
-  }
  
   render() {
     return (
@@ -26,7 +22,12 @@ export class GetEditRoles extends Component {
                 <Grid container justify = "center" >
                   <FormGroup row>
                   {data.roles.map( role => (
-                  	<SelectEditRoles key={role.id} role={role} checked={this.handleSelectEditRoles}/> 
+              		this.props.roles.some(current_role => current_role.id === role.id) ? (
+              			<SelectEditRoles key={role.id} role={role} checked={true}/> 
+              		) : (
+              			<SelectEditRoles key={role.id} role={role} checked={false}/> 
+					)
+
                   ))}
                   </FormGroup>
                 </Grid>
