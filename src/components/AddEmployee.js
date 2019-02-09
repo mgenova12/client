@@ -12,7 +12,6 @@ import GetRoles from './GetRoles'
 export class AddEmployee extends Component {
   state = {
     name: '',
-    roles: [] ,
     showAddEmployee: true,
     showRoles: false,
     employee:[]
@@ -33,7 +32,7 @@ export class AddEmployee extends Component {
   } 
   
   handleEdit = (employee) => {
-    this.setState({employee: employee, showAddEmployee: false, showRoles: true, name: employee.name, roles: employee.roles})
+    this.setState({employee: employee, showAddEmployee: false, showRoles: true, name: employee.name})
   }  
 
   handleDelete = () => {
@@ -80,15 +79,16 @@ export class AddEmployee extends Component {
                 </div>         
               )}
             </Mutation>
+            <EmployeeTable handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
           </div>
         
         ) : (
         <div>
-          <EditEmployee employee={this.state.employee}/>
+          <EditEmployee handleEdit={this.handleEdit} handleDelete={this.handleDelete} employee={this.state.employee} />
         </div>
         )}
 
-      <EmployeeTable handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
+
       </div>
     );
   }

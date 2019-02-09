@@ -73,7 +73,6 @@ export class SelectRoles extends Component {
 
 	      	)}
       	  </Mutation> 
-     
 
       </div>
     );
