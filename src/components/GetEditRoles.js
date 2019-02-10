@@ -9,21 +9,24 @@ import Button from '@material-ui/core/Button';
 
 import Grid from '@material-ui/core/Grid';
 import FormGroup from '@material-ui/core/FormGroup';
-// import Grow from '@material-ui/core/Grow';
+import Grow from '@material-ui/core/Grow';
+
+
 
 export class GetEditRoles extends Component {
-
 
 
   handleSave = resetRoles => {
     resetRoles({ variables: {  } });
     this.props.edited() 
+  
   }
 
  
   render() {
     return (
       <div>
+      
         <Query
           query={getRolesQuery}
         >
@@ -33,16 +36,18 @@ export class GetEditRoles extends Component {
           
           return(
                 <Grid container justify = "center" >
-                  <FormGroup row>
-                  {data.roles.map( role => (
-              		this.props.roles.some(current_role => current_role.id === role.id) ? (
-              			<SelectEditRoles employeeId={this.props.employeeId} key={role.id} role={role} checked={true}/> 
-              		) : (
-              			<SelectEditRoles employeeId={this.props.employeeId} key={role.id} role={role} checked={false}/> 
-					)
+                  <Grow in={this.props.grow}>
+                    <FormGroup row>
+                      {data.roles.map( role => (
+                  		this.props.roles.some(current_role => current_role.id === role.id) ? (
+                  			<SelectEditRoles employeeId={this.props.employeeId} key={role.id} role={role} checked={true}/> 
+                  		) : (
+                  			<SelectEditRoles employeeId={this.props.employeeId} key={role.id} role={role} checked={false}/> 
+    					         )
 
-                  ))}
-                  </FormGroup>
+                      ))}
+                    </FormGroup>
+                  </Grow>
                 </Grid>
           )
         }}

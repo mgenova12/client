@@ -9,22 +9,21 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
 export class SelectEditRoles extends Component {
-  state = {
-  	checked: this.props.checked
-  }
-
-
-  handleChange = (role, addEmployeeRole, employeeId, deleteEmployeeRole, selectRole) => event => {
-  	this.setState({ checked: !this.state.checked})
-
-	selectRole({ variables: { id: parseInt(role.id), checked: !role.checked } })
-	
-	if(event.target.checked) {
-		addEmployeeRole({ variables: { employeeId: parseInt(employeeId), roleId: parseInt(role.id) } })
-	} else {
-		deleteEmployeeRole({ variables: { employeeId: parseInt(employeeId), roleId: parseInt(role.id) } })
+	state = {
+		checked: this.props.checked
 	}
-  };  
+
+	handleChange = (role, addEmployeeRole, employeeId, deleteEmployeeRole, selectRole) => event => {
+		this.setState({ checked: !this.state.checked})
+
+		selectRole({ variables: { id: parseInt(role.id), checked: !role.checked } })
+
+		if(event.target.checked) {
+			addEmployeeRole({ variables: { employeeId: parseInt(employeeId), roleId: parseInt(role.id) } })
+		} else {
+			deleteEmployeeRole({ variables: { employeeId: parseInt(employeeId), roleId: parseInt(role.id) } })
+		}
+	};  
 
 	componentWillReceiveProps(nextProps){
 	  if (nextProps.checked !== this.props.checked) {

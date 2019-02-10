@@ -7,20 +7,22 @@ import SelectRoles from './SelectRoles'
 import Grid from '@material-ui/core/Grid';
 import FormGroup from '@material-ui/core/FormGroup';
 import Button from '@material-ui/core/Button';
-
 import Grow from '@material-ui/core/Grow';
 
 export class GetRoles extends Component {
 
   handleSave = resetRoles => {
-    resetRoles({ variables: {  } });
-    this.props.onSave()
+    resetRoles({ variables: {  } },
+      this.props.onSave()
+    );
+
   }
 
   render() {
 
     return (
       <div>
+
         <Query
           query={getRolesQuery}
         >
@@ -57,7 +59,7 @@ export class GetRoles extends Component {
             <Button 
             variant="contained" 
             color="primary" 
-            onClick={ () => { this.handleSave(resetRoles) } }>Save Employee
+            onClick={ () => { this.handleSave(resetRoles)} }>Save Employee
             </Button>
 
           </Grow>

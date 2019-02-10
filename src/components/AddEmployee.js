@@ -25,10 +25,12 @@ export class AddEmployee extends Component {
     const name  = this.state.name;
     addEmployee({ variables: { name: name } });
     this.setState({ name: '', showRoles: true });
+    this.props.successNotification('Added!',`${name} Has been Added!`, 'success')
   }
 
   handleSave = () => {
     this.setState({showRoles: false})
+    this.props.successNotification('Saved!', 'Employee has been saved!', 'success')
   } 
   
   handleEdit = (employee) => {
@@ -38,6 +40,9 @@ export class AddEmployee extends Component {
   handleDelete = () => {
     console.log('DELETE')
   }
+
+
+
 
   render() {  	
 
@@ -84,7 +89,7 @@ export class AddEmployee extends Component {
         
         ) : (
         <div>
-          <EditEmployee handleEdit={this.handleEdit} handleDelete={this.handleDelete} employee={this.state.employee} />
+          <EditEmployee successNotification={this.props.successNotification} handleEdit={this.handleEdit} handleDelete={this.handleDelete} employee={this.state.employee} />
         </div>
         )}
 
