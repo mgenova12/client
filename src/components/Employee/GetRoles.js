@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+
 import { Query } from 'react-apollo';
+import getRolesQuery from '../../queries/getRoles';
+
 import { Mutation } from 'react-apollo';
-import resetRoles from '../mutations/resetRoles'
-import getRolesQuery from '../queries/getRoles';
+import resetRoles from '../../mutations/resetRoles'
+
 import SelectRoles from './SelectRoles'
+
 import Grid from '@material-ui/core/Grid';
 import FormGroup from '@material-ui/core/FormGroup';
 import Button from '@material-ui/core/Button';

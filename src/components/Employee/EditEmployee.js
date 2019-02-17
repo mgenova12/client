@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+
 import { Mutation } from 'react-apollo';
-import editEmployeeName from '../mutations/editEmployeeName';
-import getEmployeeRolesQuery from '../queries/getEmployeeRoles';
+import editEmployeeName from '../../mutations/editEmployeeName';
+import getEmployeeRolesQuery from '../../queries/getEmployeeRoles';
+
 import AddEmployee from './AddEmployee'
 import EmployeeTable from './EmployeeTable'
 import GetEditRoles from './GetEditRoles'
+
 import TextField from '@material-ui/core/TextField';
 
 
@@ -26,6 +29,7 @@ export class EditEmployee extends Component {
 	handleSubmit = (editEmployeeName) => {
 		const name = this.state.name;
 		editEmployeeName({ variables: { employeeId: parseInt(this.props.employee.id), name: name } });
+		this.props.successNotification('Updated!', 'Name has been Updated!!', 'success')
 	}
 	
 	componentWillReceiveProps(nextProps){
@@ -71,7 +75,7 @@ export class EditEmployee extends Component {
 	            )}
 			</Mutation>
 
-			<GetEditRoles grow={this.state.edited} edited={this.handleEdited} roles={this.props.employee.roles} employeeId={this.props.employee.id}/>
+			<GetEditRoles successNotification={this.props.successNotification} grow={this.state.edited} edited={this.handleEdited} roles={this.props.employee.roles} employeeId={this.props.employee.id}/>
           	<EmployeeTable handleEdit={this.props.handleEdit} handleDelete={this.props.handleDelete}/>
 		</div>
 

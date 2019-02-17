@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+
 import { Mutation } from 'react-apollo';
+import addEmployee from '../../mutations/addEmployee';
+import getEmployeeRolesQuery from '../../queries/getEmployeeRoles';
 
 import EmployeeTable from './EmployeeTable'
-import addEmployee from '../mutations/addEmployee';
-import getEmployeeRolesQuery from '../queries/getEmployeeRoles';
 import EditEmployee from './EditEmployee'
+import GetRoles from './GetRoles'
 
 import TextField from '@material-ui/core/TextField';
-import GetRoles from './GetRoles'
 
 export class AddEmployee extends Component {
   state = {
@@ -38,19 +39,16 @@ export class AddEmployee extends Component {
   }  
 
   handleDelete = () => {
-    console.log('DELETE')
+    this.props.successNotification('Deleted!', 'Employee has been deleted!', 'danger')
   }
 
-
-
-
   render() {  	
-
 
     return (
       <div>
       {this.state.showAddEmployee ? (
         <div>
+        
           <Mutation 
             mutation={addEmployee}
             refetchQueries={() => {
@@ -60,6 +58,7 @@ export class AddEmployee extends Component {
             }}        
             >
               {(addEmployee, { data }) => ( 
+                  
                 <div>
                 	<form 
                   autoComplete="off"
@@ -78,12 +77,17 @@ export class AddEmployee extends Component {
                       value={this.state.name}
           	        />
                   </form>
-                  {this.state.showRoles &&
-                   <GetRoles onSave={this.handleSave} employeeId={data} showRoles={this.state.showRoles}/>
-                  }
+ 
+                    {this.state.showRoles &&
+                     <GetRoles onSave={this.handleSave} employeeId={data} showRoles={this.state.showRoles}/>
+                    }
                 </div>         
               )}
             </Mutation>
+          
+  
+          
+
             <EmployeeTable handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
           </div>
         

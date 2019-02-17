@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import { Query } from 'react-apollo';
-import getEmployeeRolesQuery from '../queries/getEmployeeRoles';
+import getEmployeeRolesQuery from '../../queries/getEmployeeRoles';
+
 import EmployeeRow from './EmployeeRow'
 
 import Table from '@material-ui/core/Table';

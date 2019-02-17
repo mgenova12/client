@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Mutation } from 'react-apollo';
 
 import { Query } from 'react-apollo';
-import resetRoles from '../mutations/resetRoles'
-import getRolesQuery from '../queries/getRoles';
-import SelectEditRoles from './SelectEditRoles'
-import Button from '@material-ui/core/Button';
+import getRolesQuery from '../../queries/getRoles';
 
+import { Mutation } from 'react-apollo';
+import resetRoles from '../../mutations/resetRoles'
+
+import SelectEditRoles from './SelectEditRoles'
+
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import FormGroup from '@material-ui/core/FormGroup';
 import Grow from '@material-ui/core/Grow';
@@ -19,7 +21,7 @@ export class GetEditRoles extends Component {
   handleSave = resetRoles => {
     resetRoles({ variables: {  } });
     this.props.edited() 
-  
+    this.props.successNotification('Updated!', 'Employee has been Updated!', 'success')
   }
 
  
@@ -69,7 +71,6 @@ export class GetEditRoles extends Component {
             onClick={ () => { this.handleSave(resetRoles) } }>Edit Employee
             </Button>
 
-         
           )}
           </Mutation>
 

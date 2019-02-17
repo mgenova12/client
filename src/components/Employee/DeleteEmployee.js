@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+
+import { Mutation } from 'react-apollo';
+import deleteEmployee from '../../mutations/deleteEmployee'
+import getEmployeeRolesQuery from '../../queries/getEmployeeRoles';
+
 import TableCell from '@material-ui/core/TableCell';
 import Button from '@material-ui/core/Button';
-import { Mutation } from 'react-apollo';
-import getEmployeeRolesQuery from '../queries/getEmployeeRoles';
-import deleteEmployee from '../mutations/deleteEmployee'
 
 export class DeleteEmployee extends Component {
   
