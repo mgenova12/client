@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  color: white;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -24,3 +25,33 @@ p {
 .hidden { 
 	display:none !important; 
 }
+
+th {
+  color: white;
+}
+
+td {
+  color: white;
+}
+
+table {
+  display: table;
+}
+
+.invert {
+  display: table-cell;
+}
+
+table tr td {
+  display: block;
+}
+
+.fab {
+  outline-style:none !important;
+}
+
+.IconButton {
+  outline-style:none !important;
+}
+
+
