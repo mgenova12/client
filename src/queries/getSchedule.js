@@ -1,11 +1,12 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  {
-    schedules {
+  query schedules($scheduleType: String!) {   
+    schedules(scheduleType: $scheduleType) {
       id
       day
       timeOfDay
     }
+	
   }
 `;

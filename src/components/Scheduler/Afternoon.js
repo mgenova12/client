@@ -9,7 +9,7 @@ export class Afternoon extends Component {
   render() {
     return (
       <div>      	
-		<Table striped bordered hover>
+		<Table striped bordered>
       	<thead>
 		    <tr>
 	      		<th colSpan="6">Afternoon</th>
@@ -26,12 +26,12 @@ export class Afternoon extends Component {
 		    </tr>
 		  </thead>
 			  <tbody>
-	        		<AddShift day={'Monday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift day={'Tuesday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift day={'Wednesday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift day={'Thursday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift day={'Friday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift day={'Saturday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift scheduleType={this.props.scheduleType} day={'Monday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift scheduleType={this.props.scheduleType} day={'Tuesday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift scheduleType={this.props.scheduleType} day={'Wednesday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift scheduleType={this.props.scheduleType} day={'Thursday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift scheduleType={this.props.scheduleType} day={'Friday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift scheduleType={this.props.scheduleType} day={'Saturday'} timeOfDay={'Afternoon'}/>
 	 		  </tbody>						
 		</Table>
 

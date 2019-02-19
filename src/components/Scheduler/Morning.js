@@ -12,7 +12,7 @@ export class Morning extends Component {
 
     return (
       <div>
-		<Table striped bordered hover>
+		<Table striped bordered>
       	<thead>
 		    <tr>
 	      		<th colSpan="6">Morning</th>
@@ -29,12 +29,12 @@ export class Morning extends Component {
 		    </tr>
 		  </thead>
 			  <tbody>
-				<AddShift day={'Monday'} timeOfDay={'Morning'}/>
-				<AddShift day={'Tuesday'} timeOfDay={'Morning'}/>
-				<AddShift day={'Wednesday'} timeOfDay={'Morning'}/>
-				<AddShift day={'Thursday'} timeOfDay={'Morning'}/>
-				<AddShift day={'Friday'} timeOfDay={'Morning'}/>
-				<AddShift day={'Saturday'} timeOfDay={'Morning'}/>
+				<AddShift scheduleType={this.props.scheduleType} day={'Monday'} timeOfDay={'Morning'}/>
+				<AddShift scheduleType={this.props.scheduleType} day={'Tuesday'} timeOfDay={'Morning'}/>
+				<AddShift scheduleType={this.props.scheduleType} day={'Wednesday'} timeOfDay={'Morning'}/>
+				<AddShift scheduleType={this.props.scheduleType} day={'Thursday'} timeOfDay={'Morning'}/>
+				<AddShift scheduleType={this.props.scheduleType} day={'Friday'} timeOfDay={'Morning'}/>
+				<AddShift scheduleType={this.props.scheduleType} day={'Saturday'} timeOfDay={'Morning'}/>
 	 		  </tbody>		  						
 		</Table>
       </div>

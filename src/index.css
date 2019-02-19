@@ -54,4 +54,9 @@ table tr td {
   outline-style:none !important;
 }
 
+hr {
+  height:2px; 
+  visibility:hidden; 
+  margin-bottom:-10px; 
+}
 

@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import Morning from './Morning'
 import Afternoon from './Afternoon'
 
-
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -11,12 +10,12 @@ import Button from '@material-ui/core/Button';
 
 export class SchedulerSetup extends Component {
   state = {
-    age: '',
-    open: false,
+    scheduleType: '',
+    open: false
   };
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ scheduleType: event.target.value });
   };
 
   handleClose = () => {
@@ -27,8 +26,8 @@ export class SchedulerSetup extends Component {
     this.setState({ open: true });
   };
 
-
   render() {
+
     return (
       <div>
         <Button size={'large'} onClick={this.handleOpen}>
@@ -39,24 +38,20 @@ export class SchedulerSetup extends Component {
             open={this.state.open}
             onClose={this.handleClose}
             onOpen={this.handleOpen}
-            value={this.state.age}
+            value={this.state.scheduleType}
             onChange={this.handleChange}
-            inputProps={{
-              name: 'age',
-              id: 'demo-controlled-open-select',
-            }}
           >
             <MenuItem value="">
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Pizza</MenuItem>
-            <MenuItem value={20}>Cook</MenuItem>
-            <MenuItem value={30}>Wait Staff</MenuItem>
+            <MenuItem value={'Pizza'}>Pizza</MenuItem>
+            <MenuItem value={'Cook'}>Cook</MenuItem>
+            <MenuItem value={'Wait Staff'}>Wait Staff</MenuItem>
           </Select>
         </FormControl>
 
-        <Morning/>
-        <Afternoon/>
+        <Morning scheduleType={this.state.scheduleType} />
+        <Afternoon scheduleType={this.state.scheduleType} />
       </div>
     );
   }
