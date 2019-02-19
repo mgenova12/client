@@ -26,12 +26,12 @@ export class Afternoon extends Component {
 		    </tr>
 		  </thead>
 			  <tbody>
-	        		<AddShift day={'monday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift day={'tuesday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift day={'wednesday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift day={'thursday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift day={'friday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift day={'saturday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift day={'Monday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift day={'Tuesday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift day={'Wednesday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift day={'Thursday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift day={'Friday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift day={'Saturday'} timeOfDay={'Afternoon'}/>
 	 		  </tbody>						
 		</Table>
 

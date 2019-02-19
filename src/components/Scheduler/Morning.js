@@ -7,6 +7,7 @@ import Table from 'react-bootstrap/Table';
 export class Morning extends Component {
   
 
+
   render() {
 
     return (
@@ -28,12 +29,12 @@ export class Morning extends Component {
 		    </tr>
 		  </thead>
 			  <tbody>
-	        		<AddShift day={'monday'} timeOfDay={'Morning'}/>
-	        		<AddShift day={'tuesday'} timeOfDay={'Morning'}/>
-	        		<AddShift day={'wednesday'} timeOfDay={'Morning'}/>
-	        		<AddShift day={'thursday'} timeOfDay={'Morning'}/>
-	        		<AddShift day={'friday'} timeOfDay={'Morning'}/>
-	        		<AddShift day={'saturday'} timeOfDay={'Morning'}/>
+				<AddShift day={'Monday'} timeOfDay={'Morning'}/>
+				<AddShift day={'Tuesday'} timeOfDay={'Morning'}/>
+				<AddShift day={'Wednesday'} timeOfDay={'Morning'}/>
+				<AddShift day={'Thursday'} timeOfDay={'Morning'}/>
+				<AddShift day={'Friday'} timeOfDay={'Morning'}/>
+				<AddShift day={'Saturday'} timeOfDay={'Morning'}/>
 	 		  </tbody>		  						
 		</Table>
       </div>
