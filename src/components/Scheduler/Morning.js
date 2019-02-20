@@ -7,7 +7,6 @@ import Table from 'react-bootstrap/Table';
 export class Morning extends Component {
   
 
-
   render() {
 
     return (

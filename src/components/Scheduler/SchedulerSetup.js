@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import { Query } from 'react-apollo';
+import getRolesQuery from '../../queries/getRoles';
+
 import Morning from './Morning'
 import Afternoon from './Afternoon'
 
@@ -27,31 +30,43 @@ export class SchedulerSetup extends Component {
   };
 
   render() {
-
     return (
       <div>
         <Button size={'large'} onClick={this.handleOpen}>
           Schedule For
         </Button>
         <FormControl>
-          <Select
-            open={this.state.open}
-            onClose={this.handleClose}
-            onOpen={this.handleOpen}
-            value={this.state.scheduleType}
-            onChange={this.handleChange}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={'Pizza'}>Pizza</MenuItem>
-            <MenuItem value={'Cook'}>Cook</MenuItem>
-            <MenuItem value={'Wait Staff'}>Wait Staff</MenuItem>
-          </Select>
-        </FormControl>
 
-        <Morning scheduleType={this.state.scheduleType} />
-        <Afternoon scheduleType={this.state.scheduleType} />
+          <Query
+            query={getRolesQuery}
+          >
+          {({ loading, error, data }) => { 
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>ERROR</p>;
+            
+            return(
+              <Select
+                open={this.state.open}
+                onClose={() => this.handleClose()}
+                onOpen={() => this.handleOpen()}
+                value={this.state.scheduleType}
+                onChange={(e) => this.handleChange(e)}
+              >
+                {data.roles.map( role => (
+                  <MenuItem key={role.id} value={role.title}>{role.title}</MenuItem>
+                ))}
+              </Select>
+            )
+          }}
+          </Query>   
+
+        </FormControl>
+        {this.state.scheduleType &&
+          <div> 
+            <Morning scheduleType={this.state.scheduleType} /> 
+            <Afternoon scheduleType={this.state.scheduleType} /> 
+          </div>
+        }
       </div>
     );
   }

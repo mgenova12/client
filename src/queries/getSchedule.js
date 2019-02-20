@@ -6,6 +6,10 @@ export default gql`
       id
       day
       timeOfDay
+	    employee {
+	      id
+	      name
+	    }      
     }
 	
   }

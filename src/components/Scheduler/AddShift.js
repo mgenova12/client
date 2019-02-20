@@ -19,7 +19,14 @@ export class AddShift extends Component {
 	renderSchedule = (schedule) =>  {
 	  switch(true) {
 	    case (this.props.day === schedule.day && this.props.timeOfDay === schedule.timeOfDay):
-	      return <td key={schedule.id}> <SelectEmployee/> <SelectTime/> <hr/> <DeleteShift scheduleType={this.props.scheduleType} Id={schedule.id}/> </td>;      
+	      return (
+	      <td key={schedule.id}> 
+	      	<SelectEmployee employee={schedule.employee ? schedule.employee.name : ''} scheduleType={this.props.scheduleType}/> 
+	      	<SelectTime/> 
+	      	<hr/> 
+	      	<DeleteShift scheduleType={this.props.scheduleType} Id={schedule.id}/> 
+	      </td> 
+	      )     
 	    default:
 	      return null;
 	  }

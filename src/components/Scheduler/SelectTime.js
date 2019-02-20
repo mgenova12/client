@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import { withStyles } from "@material-ui/core/styles";
 
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
+
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import FilledInput from '@material-ui/core/FilledInput';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 const styles = {
   formControl: {
@@ -29,6 +30,7 @@ export class SelectTime extends Component {
     	<div>
        <FormControl className={classes.formControl} variant="filled">
           <InputLabel className={classes.InputLabel}>Time</InputLabel>
+          
           <Select
           	autoWidth={true}
             // value={this.state.age}
@@ -42,6 +44,9 @@ export class SelectTime extends Component {
             <MenuItem value={20}>Twenty</MenuItem>
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>
+
+
+
         </FormControl>
         </div>
     );
