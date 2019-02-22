@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 
-
-export class AddTimeShift extends Component {
+export class TimeTable extends Component {
 
 
   render() {
     return (
       <div>
-
+       	Table
       </div>
     );
   }
 }
 
-export default AddTimeShift;
+export default TimeTable;

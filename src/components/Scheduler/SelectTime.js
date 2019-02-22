@@ -24,13 +24,11 @@ const styles = {
 
 export class SelectTime extends Component {
 
-
   render() {
     const { classes } = this.props;
-
     return (
        <FormControl className={classes.formControl} variant="filled">
-          <InputLabel className={classes.InputLabel}>Employee</InputLabel>
+          <InputLabel className={classes.InputLabel}>Time</InputLabel>
     
           <Query
             query={getRoleEmployeesQuery}

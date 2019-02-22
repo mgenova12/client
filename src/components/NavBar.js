@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 
 import EmployeeSetup from './Employee/EmployeeSetup'
 import SchedulerSetup from './Scheduler/SchedulerSetup'
+import TimeSetup from './Time/TimeSetup'
 
 import AppBar from "@material-ui/core/AppBar";
 import { Toolbar } from "@material-ui/core";
@@ -19,6 +20,7 @@ import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import Alarm from '@material-ui/icons/Alarm';
 import Schedule from '@material-ui/icons/Schedule';
 import Home from '@material-ui/icons/Home';
 
@@ -65,6 +67,14 @@ export class NavBar extends Component {
 	         </Link>
 	        </MenuItem>		
 			<Divider/>
+          
+          <MenuItem>
+           <ListItemIcon><Alarm/></ListItemIcon>
+           <Link to={'/times'} style={{ textDecoration: 'none' }}>
+              <ListItemText primary="Times" />
+           </Link>
+          </MenuItem>   
+      <Divider/>      
 
 		</MenuList>
 
@@ -109,6 +119,7 @@ export class NavBar extends Component {
       
       <Route path="/employees" component={EmployeeSetup}/>
       <Route path="/scheduler" component={SchedulerSetup}/>
+      <Route path="/times" component={TimeSetup}/>
 
       </div>
       </Router>
