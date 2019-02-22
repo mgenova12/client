@@ -21,7 +21,11 @@ export class AddShift extends Component {
 	    case (this.props.day === schedule.day && this.props.timeOfDay === schedule.timeOfDay):
 	      return (
 	      <td key={schedule.id}> 
-	      	<SelectEmployee employee={schedule.employee ? schedule.employee.name : ''} scheduleType={this.props.scheduleType}/> 
+	      	<SelectEmployee 
+	      	employee={schedule.employee ? schedule.employee.name : ''} 
+	      	scheduleType={this.props.scheduleType}
+	      	scheduleId={schedule.id}
+	      	/> 
 	      	<SelectTime/> 
 	      	<hr/> 
 	      	<DeleteShift scheduleType={this.props.scheduleType} Id={schedule.id}/> 
@@ -34,7 +38,7 @@ export class AddShift extends Component {
 
 
 	addShift = (addSchedule, event) => {
-		// event.stopPropagation()
+		event.stopPropagation()
 		event.preventDefault()
 		addSchedule({ variables: { day: this.props.day, timeOfDay: this.props.timeOfDay, scheduleType: this.props.scheduleType } });
 	}

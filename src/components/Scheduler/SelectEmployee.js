@@ -9,7 +9,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 
 import AddEmployeeShift from './AddEmployeeShift'
-// import FilledInput from '@material-ui/core/FilledInput';
 
 const styles = {
   formControl: {
@@ -42,7 +41,12 @@ export class SelectEmployee extends Component {
             if (error) return <p>ERROR</p>;
             
             return(
-              <AddEmployeeShift employee={this.props.employee} employees={data.roleEmployees}/>
+              <AddEmployeeShift 
+              employee={this.props.employee} 
+              employees={data.roleEmployees}
+              scheduleId={this.props.scheduleId}
+              scheduleType={this.props.scheduleType}
+              />
             )
           }}
           </Query>  

@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 
 import { withStyles } from "@material-ui/core/styles";
 
-import InputLabel from '@material-ui/core/InputLabel';
+import { Query } from 'react-apollo';
+import getRoleEmployeesQuery from '../../queries/getRoleEmployees';
 
+import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FilledInput from '@material-ui/core/FilledInput';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+
+import AddEmployeeShift from './AddEmployeeShift'
 
 const styles = {
   formControl: {
@@ -17,38 +18,40 @@ const styles = {
     wrap: "nowrap",
   },
   InputLabel: {
-  	color: "white"
+    color: "white"
   }
 };
 
 export class SelectTime extends Component {
 
+
   render() {
-  	const { classes } = this.props;
+    const { classes } = this.props;
 
     return (
-    	<div>
        <FormControl className={classes.formControl} variant="filled">
-          <InputLabel className={classes.InputLabel}>Time</InputLabel>
-          
-          <Select
-          	autoWidth={true}
-            // value={this.state.age}
-            // onChange={this.handleChange}
-            input={<FilledInput name="time" />}
+          <InputLabel className={classes.InputLabel}>Employee</InputLabel>
+    
+          <Query
+            query={getRoleEmployeesQuery}
+            variables={{ title: this.props.scheduleType }}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
-
-
+          {({ loading, error, data }) => { 
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>ERROR</p>;
+            
+            return(
+              <AddEmployeeShift 
+              employee={this.props.employee} 
+              employees={data.roleEmployees}
+              scheduleId={this.props.scheduleId}
+              scheduleType={this.props.scheduleType}
+              />
+            )
+          }}
+          </Query>  
 
         </FormControl>
-        </div>
     );
   }
 }
