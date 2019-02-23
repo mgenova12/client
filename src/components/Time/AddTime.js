@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Mutation } from 'react-apollo';
 import addShiftTime from '../../mutations/addShiftTime';
+import getShiftTimesQuery from '../../queries/getShiftTimes';
 
 import { withStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
@@ -25,9 +26,12 @@ export class TimeSetup extends Component {
 
 	handleSubmit = (event, addShiftTime) => {
 		event.preventDefault();
-		console.log('sumbit')
-		addShiftTime({ variables: { time: event.target.value } });
-		this.setState({ time: "" });
+		if(!event.target.value){
+			console.log('Invalid Date!')
+		} else{
+			addShiftTime({ variables: { time: event.target.value } });
+			this.setState({ time: "" });
+		}
 	}
 
 
@@ -38,7 +42,12 @@ export class TimeSetup extends Component {
       <div>
       	 <br/> 	 
           <Mutation 
-            mutation={addShiftTime}       
+            mutation={addShiftTime}
+            refetchQueries={() => {
+               return [{
+                  query: getShiftTimesQuery
+              }];
+            }}                    
             >
               {(addShiftTime, { data }) => (       	 
 

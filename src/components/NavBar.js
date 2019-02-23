@@ -44,36 +44,36 @@ export class NavBar extends Component {
 
 		<MenuList>
 
-	        <MenuItem>
-	         <ListItemIcon><Home/></ListItemIcon>
-	         <Link to={'/'} style={{ textDecoration: 'none' }}>
+	       <Link to={'/'} style={{ textDecoration: 'none' }}>
+          <MenuItem>
+           <ListItemIcon><Home/></ListItemIcon>
 	          	<ListItemText primary="Home" />
-	         </Link>
-	        </MenuItem>		
+          </MenuItem>   
+	       </Link>
 			<Divider/>
 
-	        <MenuItem>
-	         <ListItemIcon><Schedule/></ListItemIcon>
-	         <Link to={'/scheduler'} style={{ textDecoration: 'none' }}>
+	       <Link to={'/scheduler'} style={{ textDecoration: 'none' }}>
+          <MenuItem>
+           <ListItemIcon><Schedule/></ListItemIcon>
 	          	<ListItemText primary="Scheduler" />
-	         </Link>
-	        </MenuItem>		
+          </MenuItem>   
+	       </Link>
 			<Divider/>
 		
-	        <MenuItem>
-	         <ListItemIcon><AccountCircle/></ListItemIcon>
-	         <Link to={'/employees'} style={{ textDecoration: 'none' }}>
+	       <Link to={'/employees'} style={{ textDecoration: 'none' }}>
+          <MenuItem>
+           <ListItemIcon><AccountCircle/></ListItemIcon>
 	          	<ListItemText primary="Employee Setup" />
-	         </Link>
-	        </MenuItem>		
+          </MenuItem>   
+	       </Link>
 			<Divider/>
           
+         <Link to={'/times'} style={{ textDecoration: 'none' }}>
           <MenuItem>
            <ListItemIcon><Alarm/></ListItemIcon>
-           <Link to={'/times'} style={{ textDecoration: 'none' }}>
               <ListItemText primary="Times" />
-           </Link>
           </MenuItem>   
+         </Link>
       <Divider/>      
 
 		</MenuList>
