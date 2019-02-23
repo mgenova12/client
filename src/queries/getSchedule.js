@@ -9,7 +9,11 @@ export default gql`
 	    employee {
 	      id
 	      name
-	    }      
+	    }
+      shiftTime {
+        id
+        time
+      }            
     }
 	
   }

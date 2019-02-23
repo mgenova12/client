@@ -24,7 +24,6 @@ const styles = {
 
 export class SelectEmployee extends Component {
 
-
   render() {
   	const { classes } = this.props;
 
@@ -42,10 +41,10 @@ export class SelectEmployee extends Component {
             
             return(
               <AddEmployeeShift 
-              employee={this.props.employee} 
-              employees={data.roleEmployees}
-              scheduleId={this.props.scheduleId}
-              scheduleType={this.props.scheduleType}
+                employee={this.props.employee} 
+                employees={data.roleEmployees}
+                scheduleId={this.props.scheduleId}
+                scheduleType={this.props.scheduleType}
               />
             )
           }}

@@ -22,13 +22,21 @@ export class AddShift extends Component {
 	      return (
 	      <td key={schedule.id}> 
 	      	<SelectEmployee 
-	      	employee={schedule.employee ? schedule.employee.name : ''} 
-	      	scheduleType={this.props.scheduleType}
-	      	scheduleId={schedule.id}
+	      		employee={schedule.employee ? schedule.employee.name : ''} 
+	      		scheduleType={this.props.scheduleType}
+	      		scheduleId={schedule.id}
 	      	/> 
-	      	<SelectTime/> 
+	      	<SelectTime
+	      		shiftTime={schedule.shiftTime ? schedule.shiftTime.time : ''}
+	      		scheduleType={this.props.scheduleType}
+	      		timeOfDay={schedule.timeOfDay}
+	      		scheduleId={schedule.id}
+	      	/> 
 	      	<hr/> 
-	      	<DeleteShift scheduleType={this.props.scheduleType} Id={schedule.id}/> 
+	      	<DeleteShift 
+	      		scheduleType={this.props.scheduleType} 
+	      		Id={schedule.id}
+	      	/> 
 	      </td> 
 	      )     
 	    default:

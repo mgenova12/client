@@ -10,7 +10,6 @@ export class TimeRow extends Component {
 
 
   render() {
-  	console.log(this.props.shiftTimes)
     return (
     	<TableBody>
            {this.props.shiftTimes.map( shiftTime => (
@@ -18,7 +17,6 @@ export class TimeRow extends Component {
           	<TableRow key={shiftTime.id} >
               <TableCell><p>{ new Date(`2019-12-17T${shiftTime.time}`).toLocaleTimeString('en-US') }</p></TableCell>
               <TableCell> <DeleteTime timeId={shiftTime.id}/> </TableCell>
-
 
             </TableRow>
 

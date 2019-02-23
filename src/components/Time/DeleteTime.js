@@ -10,11 +10,8 @@ import Button from '@material-ui/core/Button';
 export class DeleteTime extends Component {
   
   handleDelete = (deleteShiftTime, event) => {
-    // event.stopPropagation()
     deleteShiftTime({ variables: { id: this.props.timeId } });
-
   }
- 
 
   render() {
     return (  

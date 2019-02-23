@@ -30,7 +30,7 @@ export class AddEmployeeShift extends Component {
 
 
   render() {
-    console.log(this.props.employee)
+    
     return (
             <Mutation 
               mutation={updateEmployeeSchedule}  

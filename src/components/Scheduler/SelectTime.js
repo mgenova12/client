@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import { withStyles } from "@material-ui/core/styles";
 
 import { Query } from 'react-apollo';
-import getRoleEmployeesQuery from '../../queries/getRoleEmployees';
+import getShiftTimesQuery from '../../queries/getShiftTimes';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 
-import AddEmployeeShift from './AddEmployeeShift'
+import AddShiftTime from './AddShiftTime'
 
 const styles = {
   formControl: {
@@ -23,27 +23,27 @@ const styles = {
 };
 
 export class SelectTime extends Component {
-
   render() {
     const { classes } = this.props;
+
     return (
        <FormControl className={classes.formControl} variant="filled">
           <InputLabel className={classes.InputLabel}>Time</InputLabel>
     
           <Query
-            query={getRoleEmployeesQuery}
-            variables={{ title: this.props.scheduleType }}
+            query={getShiftTimesQuery}
           >
           {({ loading, error, data }) => { 
             if (loading) return <p>Loading...</p>;
             if (error) return <p>ERROR</p>;
             
             return(
-              <AddEmployeeShift 
-              employee={this.props.employee} 
-              employees={data.roleEmployees}
-              scheduleId={this.props.scheduleId}
-              scheduleType={this.props.scheduleType}
+              <AddShiftTime 
+                timeOfDay={this.props.timeOfDay} 
+                shiftTimes={data.shiftTimes} 
+                scheduleId={this.props.scheduleId}
+                scheduleType={this.props.scheduleType}
+                shiftTime={this.props.shiftTime}
               />
             )
           }}
