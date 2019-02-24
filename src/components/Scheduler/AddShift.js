@@ -27,7 +27,7 @@ export class AddShift extends Component {
 	      		scheduleId={schedule.id}
 	      	/> 
 	      	<SelectTime
-	      		shiftTime={schedule.shiftTime ? schedule.shiftTime.time : ''}
+	      		shiftTime={schedule.shiftTime ? new Date(`2019-12-17T${schedule.shiftTime.time}`).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) : ''}
 	      		scheduleType={this.props.scheduleType}
 	      		timeOfDay={schedule.timeOfDay}
 	      		scheduleId={schedule.id}

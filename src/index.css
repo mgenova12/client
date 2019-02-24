@@ -33,6 +33,9 @@ th {
 td {
   color: white;
 }
+span {
+  color: white;
+}
 
 table {
   display: table;
@@ -59,4 +62,19 @@ hr {
   visibility:hidden; 
   margin-bottom:-10px; 
 }
+
+.savedButton {
+  outline-style:none !important;
+}
+
+div.text {
+  display: inline-block;
+}
+
+.typography {
+  position: relative;
+  top:30px;
+  margin: 0px 20px 0px 20px;
+}
+
 

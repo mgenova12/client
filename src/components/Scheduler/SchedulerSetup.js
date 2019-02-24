@@ -32,7 +32,11 @@ export class SchedulerSetup extends Component {
   render() {
     return (
       <div>
-        <Button size={'large'} onClick={this.handleOpen}>
+        <Button style={{ backgroundColor: "green"}} variant="contained" className="savedButton" size={'small'}>
+          Save!
+        </Button>     
+           
+        <Button size={'large'} onClick={this.handleOpen} style={{color: 'white'}}>
           Schedule For
         </Button>
         <FormControl>

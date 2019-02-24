@@ -6,6 +6,7 @@ import getShiftTimesQuery from '../../queries/getShiftTimes';
 
 import { withStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 
 const styles = {
@@ -17,20 +18,25 @@ const styles = {
 
 export class TimeSetup extends Component {
 	state = {
-		time: ""
+		startTime: "",
+		endTime:""
 	}
 
-  	handleChange = event => {
-    	this.setState({ time: event.target.value });
+  	handleStartTime = event => {
+    	this.setState({ startTime: event.target.value });
+  	}
+  	
+  	handleEndTime = event => {
+    	this.setState({ endTime: event.target.value });
   	}
 
 	handleSubmit = (event, addShiftTime) => {
 		event.preventDefault();
-		if(!event.target.value){
+		if(!this.state.startTime || !this.state.endTime){
 			console.log('Invalid Date!')
 		} else{
-			addShiftTime({ variables: { time: event.target.value } });
-			this.setState({ time: "" });
+			addShiftTime({ variables: { startTime: this.state.startTime, endTime: this.state.endTime } });
+			this.setState({ startTime: "", endTime: "" });
 		}
 	}
 
@@ -39,7 +45,7 @@ export class TimeSetup extends Component {
   	const { classes } = this.props;
 
     return (
-      <div>
+      <div >
       	 <br/> 	 
           <Mutation 
             mutation={addShiftTime}
@@ -50,27 +56,54 @@ export class TimeSetup extends Component {
             }}                    
             >
               {(addShiftTime, { data }) => (       	 
+              	<div>
+	              	<div className="text">
+				      <TextField		      
+				        label="Start Time"
+				        // value={this.state.time}
+				        onChange={this.handleStartTime}
+				        type="time"		        
+						InputProps={{ 
+							classes: { input: classes.inputSize },
+				          	step: 300, // 5 min
+						}}
+				        InputLabelProps={{
+				          shrink: true,
+				        }}
+				      /> 
+				      </div>
 
-			      <TextField
-					onKeyPress={(e) => {
-	    				if (e.key === 'Enter') {
-	      					this.handleSubmit(e, addShiftTime)
-	    				}
-	  				}}		      
-			        id="time"
-			        label="Shift Time"
-			        value={this.state.time}
-			        onChange={this.handleChange}
-			        type="time"		        
-					InputProps={{ 
-						classes: { input: classes.inputSize },
-			          	step: 300, // 5 min
-					}}
-			        InputLabelProps={{
-			          shrink: true,
-			        }}
+				      <div className="text typography">
+				        <Typography align="center" inline={true} variant="h6">
+				          To
+				        </Typography>
+				      </div>
 
-			      /> 
+				      <div className="text">
+					      <TextField
+							onKeyPress={(e) => {
+			    				if (e.key === 'Enter') {
+			      					this.handleSubmit(e, addShiftTime)
+			    				}
+			  				}}		      
+
+					        label="End Time"
+					        // value={this.state.time}
+					        onChange={this.handleEndTime}
+					        type="time"		        
+							InputProps={{ 
+								classes: { input: classes.inputSize },
+					          	step: 300, // 5 min
+							}}
+					        InputLabelProps={{
+					          shrink: true,
+					        }}
+					      /> 
+				      </div>
+			      </div>
+
+
+
               )}
             </Mutation>
 

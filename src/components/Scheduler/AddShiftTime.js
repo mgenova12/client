@@ -16,7 +16,8 @@ export class AddShiftTime extends Component {
   }
 
   handleChange = (event, updateShiftTimeSchedule) => {
-    this.setState({ shiftTime: event.target.value.name });
+  	let currentTime = new Date(`2019-12-17T${event.target.value.name}`).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+    this.setState({ shiftTime: currentTime });
     updateShiftTimeSchedule({ variables: { id: this.props.scheduleId, shiftTimeId: parseInt(event.target.value.id) } });
   };
 
@@ -39,7 +40,7 @@ export class AddShiftTime extends Component {
 			      <MenuItem 
 			      	key={shiftTime.id} 
 			      	value={{name: shiftTime.time, id: shiftTime.id}}>
-			      	{currentTime.toLocaleTimeString('en-US')}
+			      	{currentTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
 			      </MenuItem>					 
 	      )  
 	    case (this.props.timeOfDay === "Afternoon" && hours >= 12):
@@ -47,7 +48,7 @@ export class AddShiftTime extends Component {
 			      <MenuItem 
 			      	key={shiftTime.id} 
 			      	value={{name: shiftTime.time, id: shiftTime.id}}>
-			      	{currentTime.toLocaleTimeString('en-US')}
+			      	{currentTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
 			      </MenuItem>					 
 	      ) 	         
 	    default:

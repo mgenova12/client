@@ -1,11 +1,12 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  mutation createShiftTime($time: String!) {
-    createShiftTime(input: { time: $time}) {
+  mutation createShiftTime($startTime: String!, $endTime: String!) {
+    createShiftTime(input: { startTime: $startTime, endTime: $endTime}) {
       shiftTime {
-        id
-        time
+	      id
+	      startTime
+	      endTime
       }
     }
   }
