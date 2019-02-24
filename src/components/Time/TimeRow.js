@@ -16,7 +16,12 @@ export class TimeRow extends Component {
            {this.props.shiftTimes.map( shiftTime => (
 
           	<TableRow key={shiftTime.id} >
-              <TableCell><span><Moment utc format="hh:mma">{shiftTime.startTime}</Moment></span> <span>To<span> </span> <Moment utc format="hh:mma">{shiftTime.endTime}</Moment></span></TableCell>
+            
+              <TableCell>
+                <span><Moment utc format="hh:mma">{shiftTime.startTime}</Moment></span> 
+                <span> To </span> 
+                <span><Moment utc format="hh:mma">{shiftTime.endTime}</Moment></span>
+              </TableCell>
               <TableCell> <DeleteTime timeId={shiftTime.id}/> </TableCell>
 
             </TableRow>

@@ -60,7 +60,7 @@ export class TimeSetup extends Component {
 	              	<div className="text">
 				      <TextField		      
 				        label="Start Time"
-				        // value={this.state.time}
+				        value={this.state.startTime}
 				        onChange={this.handleStartTime}
 				        type="time"		        
 						InputProps={{ 
@@ -88,7 +88,7 @@ export class TimeSetup extends Component {
 			  				}}		      
 
 					        label="End Time"
-					        // value={this.state.time}
+					        value={this.state.endTime}
 					        onChange={this.handleEndTime}
 					        type="time"		        
 							InputProps={{ 

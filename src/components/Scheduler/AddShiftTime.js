@@ -8,6 +8,8 @@ import getScheduleQuery from '../../queries/getSchedule';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
+var moment = require('moment')
+
 export class AddShiftTime extends Component {
 
   state = {
@@ -16,8 +18,7 @@ export class AddShiftTime extends Component {
   }
 
   handleChange = (event, updateShiftTimeSchedule) => {
-  	let currentTime = new Date(`2019-12-17T${event.target.value.name}`).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-    this.setState({ shiftTime: currentTime });
+    this.setState({ shiftTime: event.target.value.name });
     updateShiftTimeSchedule({ variables: { id: this.props.scheduleId, shiftTimeId: parseInt(event.target.value.id) } });
   };
 
@@ -29,26 +30,27 @@ export class AddShiftTime extends Component {
     this.setState({ open: true });
   };
 
-
 	renderShiftTimes = (shiftTime) => {
-		let currentTime = new Date(`2019-12-17T${shiftTime.time}`)
-		let hours = currentTime.getHours()
+		let amPm = moment.utc(shiftTime.startTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('a')
+		let startTime = moment.utc(shiftTime.startTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')
+		let endTime = moment.utc(shiftTime.endTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')
+		let currentTime = `${startTime} - ${endTime}`
 
 	  switch(true) {
-	    case (this.props.timeOfDay === "Morning" && hours < 12):
+	    case (this.props.timeOfDay === "Morning" && amPm === 'am'):
 	      return (
 			      <MenuItem 
 			      	key={shiftTime.id} 
-			      	value={{name: shiftTime.time, id: shiftTime.id}}>
-			      	{currentTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
+			      	value={{name: currentTime, id: shiftTime.id}}>
+			      	{currentTime}
 			      </MenuItem>					 
 	      )  
-	    case (this.props.timeOfDay === "Afternoon" && hours >= 12):
+	    case (this.props.timeOfDay === "Afternoon" && amPm === 'pm'):
 	      return (
 			      <MenuItem 
 			      	key={shiftTime.id} 
-			      	value={{name: shiftTime.time, id: shiftTime.id}}>
-			      	{currentTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}
+			      	value={{name: currentTime, id: shiftTime.id}}>
+			      	{currentTime}
 			      </MenuItem>					 
 	      ) 	         
 	    default:

@@ -13,6 +13,7 @@ import DeleteShift from './DeleteShift'
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 
+var moment = require('moment')
 
 export class AddShift extends Component {
 
@@ -27,7 +28,8 @@ export class AddShift extends Component {
 	      		scheduleId={schedule.id}
 	      	/> 
 	      	<SelectTime
-	      		shiftTime={schedule.shiftTime ? new Date(`2019-12-17T${schedule.shiftTime.time}`).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) : ''}
+	      		shiftTime={schedule.shiftTime ? `${moment.utc(schedule.shiftTime.startTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')} - ${moment.utc(schedule.shiftTime.endTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')}` : ''}
+	      		
 	      		scheduleType={this.props.scheduleType}
 	      		timeOfDay={schedule.timeOfDay}
 	      		scheduleId={schedule.id}

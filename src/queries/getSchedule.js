@@ -12,7 +12,8 @@ export default gql`
 	    }
       shiftTime {
         id
-        time
+        startTime
+        endTime
       }            
     }
 	
