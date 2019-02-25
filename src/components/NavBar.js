@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 import EmployeeSetup from './Employee/EmployeeSetup'
 import SchedulerSetup from './Scheduler/SchedulerSetup'
 import TimeSetup from './Time/TimeSetup'
+import SavedScheduleSetup from './SavedSchedules/SavedScheduleSetup'
 
 import AppBar from "@material-ui/core/AppBar";
 import { Toolbar } from "@material-ui/core";
@@ -23,6 +24,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Alarm from '@material-ui/icons/Alarm';
 import Schedule from '@material-ui/icons/Schedule';
 import Home from '@material-ui/icons/Home';
+import Save from '@material-ui/icons/Save';
 
 
 export class NavBar extends Component {
@@ -74,7 +76,15 @@ export class NavBar extends Component {
               <ListItemText primary="Times" />
           </MenuItem>   
          </Link>
-      <Divider/>      
+      <Divider/>
+
+         <Link to={'/saved_schedules'} style={{ textDecoration: 'none' }}>
+          <MenuItem>
+           <ListItemIcon><Save/></ListItemIcon>
+              <ListItemText primary="Saved Schedules" />
+          </MenuItem>   
+         </Link>
+      <Divider/>             
 
 		</MenuList>
 
@@ -120,6 +130,7 @@ export class NavBar extends Component {
       <Route path="/employees" component={EmployeeSetup}/>
       <Route path="/scheduler" component={SchedulerSetup}/>
       <Route path="/times" component={TimeSetup}/>
+      <Route path="/saved_schedules" component={SavedScheduleSetup}/>
 
       </div>
       </Router>

@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import getRolesQuery from '../../queries/getRoles';
 
+import { Mutation } from 'react-apollo';
+import saveSchedule from '../../mutations/saveSchedule';
+
 import Morning from './Morning'
 import Afternoon from './Afternoon'
 
@@ -29,12 +32,34 @@ export class SchedulerSetup extends Component {
     this.setState({ open: true });
   };
 
+  handleSaveSchedule = (e, saveSchedule) => {
+    saveSchedule({ variables: {  } });
+  }
+
   render() {
     return (
       <div>
-        <Button style={{ backgroundColor: "green"}} variant="contained" className="savedButton" size={'small'}>
-          Save!
-        </Button>     
+          <Mutation 
+            mutation={saveSchedule}  
+            // refetchQueries={() => {
+            //    return [{
+            //       query: getScheduleQuery,
+            //       variables: { scheduleType: this.props.scheduleType }
+            //   }];
+            // }}                   
+            >
+              {(saveSchedule, { data }) => ( 
+              <Button 
+                style={{ backgroundColor: "green"}} 
+                variant="contained" 
+                className="savedButton" 
+                size={'small'}
+                onClick={(e) => this.handleSaveSchedule(e, saveSchedule)}>
+                Save!
+              </Button> 
+              )}
+
+          </Mutation>              
            
         <Button size={'large'} onClick={this.handleOpen} style={{color: 'white'}}>
           Schedule For
