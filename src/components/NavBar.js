@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/NavBar.css'
+
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 
 import EmployeeSetup from './Employee/EmployeeSetup'

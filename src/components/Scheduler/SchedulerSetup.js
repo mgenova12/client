@@ -40,13 +40,7 @@ export class SchedulerSetup extends Component {
     return (
       <div>
           <Mutation 
-            mutation={saveSchedule}  
-            // refetchQueries={() => {
-            //    return [{
-            //       query: getScheduleQuery,
-            //       variables: { scheduleType: this.props.scheduleType }
-            //   }];
-            // }}                   
+            mutation={saveSchedule}                   
             >
               {(saveSchedule, { data }) => ( 
               <Button 
@@ -58,7 +52,6 @@ export class SchedulerSetup extends Component {
                 Save!
               </Button> 
               )}
-
           </Mutation>              
            
         <Button size={'large'} onClick={this.handleOpen} style={{color: 'white'}}>
@@ -90,12 +83,14 @@ export class SchedulerSetup extends Component {
           </Query>   
 
         </FormControl>
+
         {this.state.scheduleType &&
           <div> 
             <Morning scheduleType={this.state.scheduleType} /> 
             <Afternoon scheduleType={this.state.scheduleType} /> 
           </div>
         }
+        
       </div>
     );
   }

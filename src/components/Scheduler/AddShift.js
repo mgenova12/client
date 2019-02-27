@@ -29,7 +29,6 @@ export class AddShift extends Component {
 	      	/> 
 	      	<SelectTime
 	      		shiftTime={schedule.shiftTime ? `${moment.utc(schedule.shiftTime.startTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')} - ${moment.utc(schedule.shiftTime.endTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')}` : ''}
-	      		
 	      		scheduleType={this.props.scheduleType}
 	      		timeOfDay={schedule.timeOfDay}
 	      		scheduleId={schedule.id}
