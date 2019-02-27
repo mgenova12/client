@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  query roleEmployees($title: String!) {   
-    roleEmployees(title: $title) {
+  query roleEmployees($id: ID!) {   
+    roleEmployees(id: $id) {
       id
       name
     }

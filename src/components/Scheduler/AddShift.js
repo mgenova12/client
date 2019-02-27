@@ -24,18 +24,20 @@ export class AddShift extends Component {
 	      <td key={schedule.id}> 
 	      	<SelectEmployee 
 	      		employee={schedule.employee ? schedule.employee.name : ''} 
-	      		scheduleType={this.props.scheduleType}
+	      		scheduleType={schedule.role.title}
 	      		scheduleId={schedule.id}
+	      		roleId={this.props.roleId}
 	      	/> 
 	      	<SelectTime
 	      		shiftTime={schedule.shiftTime ? `${moment.utc(schedule.shiftTime.startTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')} - ${moment.utc(schedule.shiftTime.endTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')}` : ''}
-	      		scheduleType={this.props.scheduleType}
+	      		scheduleType={schedule.role.title}
 	      		timeOfDay={schedule.timeOfDay}
 	      		scheduleId={schedule.id}
+	      		roleId={this.props.roleId}
 	      	/> 
 	      	<hr/> 
 	      	<DeleteShift 
-	      		scheduleType={this.props.scheduleType} 
+	      		roleId={this.props.roleId} 
 	      		Id={schedule.id}
 	      	/> 
 	      </td> 
@@ -49,7 +51,7 @@ export class AddShift extends Component {
 	addShift = (addSchedule, event) => {
 		event.stopPropagation()
 		event.preventDefault()
-		addSchedule({ variables: { day: this.props.day, timeOfDay: this.props.timeOfDay, scheduleType: this.props.scheduleType } });
+		addSchedule({ variables: { day: this.props.day, timeOfDay: this.props.timeOfDay, roleId: this.props.roleId } });
 	}
 
   render() {
@@ -58,7 +60,7 @@ export class AddShift extends Component {
     	<tr className='invert'>
 	        <Query
 	          query={getScheduleQuery}
-	          variables={{ scheduleType: this.props.scheduleType }}
+	          variables={{ roleId: this.props.roleId }}
 	        >
 	        {({ loading, error, data }) => { 
 	          if (loading) return <td>Loading...</td>;
@@ -78,7 +80,7 @@ export class AddShift extends Component {
 	            refetchQueries={() => {
 	               return [{
 	                  query: getScheduleQuery,
-	                  variables: { scheduleType: this.props.scheduleType }
+	                  variables: { roleId: this.props.roleId }
 	              }];
 	            }}        
 	            >

@@ -17,11 +17,12 @@ import Button from '@material-ui/core/Button';
 export class SchedulerSetup extends Component {
   state = {
     scheduleType: '',
+    roleId: '',
     open: false
   };
 
   handleChange = event => {
-    this.setState({ scheduleType: event.target.value });
+    this.setState({ scheduleType: event.target.value.title, roleId: event.target.value.Id });
   };
 
   handleClose = () => {
@@ -75,7 +76,7 @@ export class SchedulerSetup extends Component {
                 onChange={(e) => this.handleChange(e)}
               >
                 {data.roles.map( role => (
-                  <MenuItem key={role.id} value={role.title}>{role.title}</MenuItem>
+                  <MenuItem key={role.id} value={{title: role.title, Id: role.id}}>{role.title}</MenuItem>
                 ))}
               </Select>
             )
@@ -86,8 +87,8 @@ export class SchedulerSetup extends Component {
 
         {this.state.scheduleType &&
           <div> 
-            <Morning scheduleType={this.state.scheduleType} /> 
-            <Afternoon scheduleType={this.state.scheduleType} /> 
+            <Morning roleId={this.state.roleId} /> 
+            <Afternoon roleId={this.state.roleId} /> 
           </div>
         }
         

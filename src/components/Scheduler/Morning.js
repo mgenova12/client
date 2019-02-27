@@ -6,7 +6,6 @@ import Table from 'react-bootstrap/Table';
 
 export class Morning extends Component {
   
-
   render() {
 
     return (
@@ -28,12 +27,12 @@ export class Morning extends Component {
 		    </tr>
 		  </thead>
 			  <tbody>
-				<AddShift scheduleType={this.props.scheduleType} day={'Monday'} timeOfDay={'Morning'}/>
-				<AddShift scheduleType={this.props.scheduleType} day={'Tuesday'} timeOfDay={'Morning'}/>
-				<AddShift scheduleType={this.props.scheduleType} day={'Wednesday'} timeOfDay={'Morning'}/>
-				<AddShift scheduleType={this.props.scheduleType} day={'Thursday'} timeOfDay={'Morning'}/>
-				<AddShift scheduleType={this.props.scheduleType} day={'Friday'} timeOfDay={'Morning'}/>
-				<AddShift scheduleType={this.props.scheduleType} day={'Saturday'} timeOfDay={'Morning'}/>
+				<AddShift roleId={this.props.roleId} day={'Monday'} timeOfDay={'Morning'}/>
+				<AddShift roleId={this.props.roleId} day={'Tuesday'} timeOfDay={'Morning'}/>
+				<AddShift roleId={this.props.roleId} day={'Wednesday'} timeOfDay={'Morning'}/>
+				<AddShift roleId={this.props.roleId} day={'Thursday'} timeOfDay={'Morning'}/>
+				<AddShift roleId={this.props.roleId} day={'Friday'} timeOfDay={'Morning'}/>
+				<AddShift roleId={this.props.roleId} day={'Saturday'} timeOfDay={'Morning'}/>
 	 		  </tbody>		  						
 		</Table>
       </div>

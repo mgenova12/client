@@ -37,7 +37,7 @@ export class AddEmployeeShift extends Component {
               refetchQueries={() => {
                  return [{
                     query: getScheduleQuery,
-                    variables: { scheduleType: this.props.scheduleType }
+                    variables: { roleId: this.props.roleId }
                 }];
               }}                   
               >

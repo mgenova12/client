@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-  query schedules($scheduleType: String!) {   
-    schedules(scheduleType: $scheduleType) {
+  query schedules($roleId: ID!) {   
+    schedules(roleId: $roleId) {
       id
       day
       timeOfDay
@@ -14,7 +14,11 @@ export default gql`
         id
         startTime
         endTime
-      }            
+      }
+      role {
+        id
+        title
+      }                  
     }
 	
   }

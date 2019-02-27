@@ -44,6 +44,7 @@ export class SelectTime extends Component {
                 scheduleId={this.props.scheduleId}
                 scheduleType={this.props.scheduleType}
                 shiftTime={this.props.shiftTime}
+                roleId={this.props.roleId}
               />
             )
           }}

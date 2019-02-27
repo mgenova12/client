@@ -33,7 +33,7 @@ export class SelectEmployee extends Component {
     
           <Query
             query={getRoleEmployeesQuery}
-            variables={{ title: this.props.scheduleType }}
+            variables={{ id: this.props.roleId }}
           >
           {({ loading, error, data }) => { 
             if (loading) return <p>Loading...</p>;
@@ -45,6 +45,7 @@ export class SelectEmployee extends Component {
                 employees={data.roleEmployees}
                 scheduleId={this.props.scheduleId}
                 scheduleType={this.props.scheduleType}
+                roleId={this.props.roleId}
               />
             )
           }}

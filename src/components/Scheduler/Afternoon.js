@@ -26,12 +26,12 @@ export class Afternoon extends Component {
 		    </tr>
 		  </thead>
 			  <tbody>
-	        		<AddShift scheduleType={this.props.scheduleType} day={'Monday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift scheduleType={this.props.scheduleType} day={'Tuesday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift scheduleType={this.props.scheduleType} day={'Wednesday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift scheduleType={this.props.scheduleType} day={'Thursday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift scheduleType={this.props.scheduleType} day={'Friday'} timeOfDay={'Afternoon'}/>
-	        		<AddShift scheduleType={this.props.scheduleType} day={'Saturday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift roleId={this.props.roleId} day={'Monday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift roleId={this.props.roleId} day={'Tuesday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift roleId={this.props.roleId} day={'Wednesday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift roleId={this.props.roleId} day={'Thursday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift roleId={this.props.roleId} day={'Friday'} timeOfDay={'Afternoon'}/>
+	        		<AddShift roleId={this.props.roleId} day={'Saturday'} timeOfDay={'Afternoon'}/>
 	 		  </tbody>						
 		</Table>
 

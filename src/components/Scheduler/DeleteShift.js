@@ -22,7 +22,7 @@ export class DeleteShift extends Component {
         refetchQueries={() => {
            return [{
               query: getScheduleQuery,
-              variables: { scheduleType: this.props.scheduleType }
+              variables: { roleId: this.props.roleId }
           }];
         }}         
         > 
