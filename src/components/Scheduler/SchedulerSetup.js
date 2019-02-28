@@ -73,6 +73,7 @@ export class SchedulerSetup extends Component {
                 onClose={() => this.handleClose()}
                 onOpen={() => this.handleOpen()}
                 value={this.state.scheduleType}
+                renderValue={value => `${value}`}
                 onChange={(e) => this.handleChange(e)}
               >
                 {data.roles.map( role => (

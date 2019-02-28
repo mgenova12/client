@@ -5,7 +5,7 @@ export default gql`
     roles {
       id
       title
-      checked
+      checked     
     }
   }
 `;

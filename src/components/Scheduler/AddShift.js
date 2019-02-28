@@ -21,26 +21,26 @@ export class AddShift extends Component {
 	  switch(true) {
 	    case (this.props.day === schedule.day && this.props.timeOfDay === schedule.timeOfDay):
 	      return (
-	      <td key={schedule.id}> 
-	      	<SelectEmployee 
-	      		employee={schedule.employee ? schedule.employee.name : ''} 
-	      		scheduleType={schedule.role.title}
-	      		scheduleId={schedule.id}
-	      		roleId={this.props.roleId}
-	      	/> 
-	      	<SelectTime
-	      		shiftTime={schedule.shiftTime ? `${moment.utc(schedule.shiftTime.startTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')} - ${moment.utc(schedule.shiftTime.endTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')}` : ''}
-	      		scheduleType={schedule.role.title}
-	      		timeOfDay={schedule.timeOfDay}
-	      		scheduleId={schedule.id}
-	      		roleId={this.props.roleId}
-	      	/> 
-	      	<hr/> 
-	      	<DeleteShift 
-	      		roleId={this.props.roleId} 
-	      		Id={schedule.id}
-	      	/> 
-	      </td> 
+		      <td key={schedule.id}> 
+		      	<SelectEmployee 
+		      		employee={schedule.employee ? schedule.employee.name : ''} 
+		      		scheduleType={schedule.role.title}
+		      		scheduleId={schedule.id}
+		      		roleId={this.props.roleId}
+		      	/> 
+		      	<SelectTime
+		      		shiftTime={schedule.shiftTime ? `${moment.utc(schedule.shiftTime.startTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')} - ${moment.utc(schedule.shiftTime.endTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')}` : ''}
+		      		scheduleType={schedule.role.title}
+		      		timeOfDay={schedule.timeOfDay}
+		      		scheduleId={schedule.id}
+		      		roleId={this.props.roleId}
+		      	/> 
+		      	<hr/> 
+		      	<DeleteShift 
+		      		roleId={this.props.roleId} 
+		      		Id={schedule.id}
+		      	/> 
+		      </td> 
 	      )     
 	    default:
 	      return null;
