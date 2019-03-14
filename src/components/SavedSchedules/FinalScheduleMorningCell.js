@@ -8,7 +8,8 @@ import getFinalScheduleQuery from '../../queries/getFinalSchedule';
 export class FinalScheduleCell extends Component {
 
 	renderFinalSchedule = (schedule) =>  {
-		return <td key={schedule.id}>{schedule.employee.name}</td>
+		// console.log(schedule)
+		// return <td key={schedule.id}>{schedule.employee.name}</td>
 	}
 
 
@@ -29,9 +30,13 @@ export class FinalScheduleCell extends Component {
 		          if (error) return <td>ERROR</td>;
 		          
 		          return(
-	                  data.finalSchedule.map( schedule => (
-	                  	this.renderFinalSchedule(schedule)
-	                  ))
+		          			(data.finalSchedule.length > 1) ? (
+		                  data.finalSchedule.map( schedule => (
+		                  	this.renderFinalSchedule(schedule)
+		                  ))
+	                  ) : (
+	                  	<td>OFF</td>
+	                  )
 		          	)
 		        }}
 	        </Query>   
