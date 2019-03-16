@@ -17,6 +17,13 @@ export class FinalSchedule extends Component {
 			return <th> {moment.utc(data.finalSchedule[0].shiftTime.startTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')} - {moment.utc(data.finalSchedule[0].shiftTime.endTime, 'YYYY-MM-DD HH:mm:ss", "UTC"').format('h:mm')} </th>
 		}
 	}
+    
+    getDates = (dayNum) => {
+      var curr = new Date();
+      var first = curr.getDate() - curr.getDay();  
+      return new Date(curr.setDate(first+dayNum)).toLocaleDateString();
+    }
+
 
   render() {
   	const daysOfWeek = ["Monday","Tuesday","Wednesday","Thursday", "Friday", "Saturday"] 
@@ -44,8 +51,8 @@ export class FinalSchedule extends Component {
 								  <thead>
 								    <tr>
 								        <th></th>
-								        {daysOfWeek.map(day => 
-								        	<th>{day}</th>
+								        {daysOfWeek.map((day, index) => 
+								        	<th>{day} <br/> {this.getDates(index+1)}</th>
 								        )}
 								    </tr>
 								  </thead>

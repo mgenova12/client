@@ -18,8 +18,7 @@ export class SavedScheduleRow extends Component {
     return (
 	    	<TableBody>
 	           {this.props.savedSchedules.map( savedSchedule => (
-	           	
-		          	<TableRow key={savedSchedule.id} onClick={() => this.showSavedSchedule(savedSchedule.id)}>
+		          	<TableRow className="tableRow" key={savedSchedule.id} onClick={() => this.showSavedSchedule(savedSchedule.id)}>
 		              <TableCell><p>{savedSchedule.id}</p> </TableCell>
 		              <TableCell><p> {savedSchedule.createdAt} </p></TableCell>
 		              <TableCell><p>Some Date</p></TableCell>

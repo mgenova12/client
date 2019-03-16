@@ -14,12 +14,35 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+
 export class SchedulerSetup extends Component {
   state = {
     scheduleType: '',
     roleId: '',
     open: false
   };
+
+  constructor(props) {
+    super(props);
+    this.successNotification = this.successNotification.bind(this);
+    this.notificationDOMRef = React.createRef();
+  }
+
+  successNotification(title, message, type) {
+    this.notificationDOMRef.current.addNotification({
+      title: title,
+      message: message,
+      type: type,
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animated", "fadeIn"],
+      animationOut: ["animated", "fadeOut"],
+      dismiss: { duration: 2000 },
+      dismissable: { click: true }
+    });
+  }  
 
   handleChange = event => {
     this.setState({ scheduleType: event.target.value.title, roleId: event.target.value.Id });
@@ -34,12 +57,16 @@ export class SchedulerSetup extends Component {
   };
 
   handleSaveSchedule = (e, saveSchedule) => {
-    saveSchedule({ variables: {  } });
+      saveSchedule({ variables: {  } });
+      this.successNotification('Saved!', 'Schedule has been saved!', 'success')
+      
   }
+
 
   render() {
     return (
       <div>
+          <ReactNotification ref={this.notificationDOMRef} />
           <Mutation 
             mutation={saveSchedule}                   
             >
@@ -70,6 +97,7 @@ export class SchedulerSetup extends Component {
             return(
               <Select
                 open={this.state.open}
+                style={{ color: "#f50057"}}
                 onClose={() => this.handleClose()}
                 onOpen={() => this.handleOpen()}
                 value={this.state.scheduleType}
